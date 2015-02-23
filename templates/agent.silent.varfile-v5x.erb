@@ -1,0 +1,39 @@
+#####################
+#Mandatory parameters
+#####################
+
+#set parameters for the agent
+nolio.nimi.port=<%= @agent_port %>
+nolio.nimi.node.id=<%= @agent_id %>
+sys.installationDir=<%= @install_dir %>
+
+#set parameters for the execution server
+#nolio.nimi.supernode=
+nolio.execution.name=<%= @execution_server_host %>
+nolio.execution.port=<%= @execution_server_port %>
+
+#####################
+#Optional parameters
+#####################
+#only required in case of automatic mapping to server type and environment
+#nolio.agent.mapping.application=<%= @agent_mapping_application %>
+#nolio.agent.mapping.environment=<%= @agent_mapping_environment %>
+#nolio.agent.mapping.servertype=<%= @agent_mapping_servertype %>
+
+#only required for agent installation on Windwos
+#nolio.service.pw=
+#nolio.service.user=
+
+#change hidden port (JMX port) to true and add number different then 8282
+#only required in case you have multiple agents on same server or port is in use already
+nolio.hiddenport$Boolean=false
+port.hidden=
+
+#change to true in case agent to ES communication should be encrypted
+nolio.nimi.secured$Boolean=<%= @execution_server_secure %>
+
+#system parameters
+sys.adminRights$Boolean=true
+sys.programGroupDisabled$Boolean=true
+sys.languageId=en
+sys.component.336$Boolean=true
