@@ -3,7 +3,7 @@
 # Install Nolio (CA Release Automation) Execution Server
 #
 
-class nolio_server_linux (
+class nolio::nolio_server_linux (
 
 $package_version           = '5.0.2.b78',
 $service_name              = 'NolioASAP',
@@ -67,14 +67,18 @@ $nolio_repository_scheme_int            = 0,#0
   } 
 
 
- file {"${temp_dir}/puppet_nolio":
-    ensure => directory,
-  } ->
+ if ! defined(File["${src_dir}"]) {
+    file { "${src_dir}":
+      ensure=>directory,
+    }
+  }  
   exec { "${real_package_name}_download":
     command => "/usr/bin/wget -N '${package_source}' -O ${real_package_name}",
     cwd     => "${src_dir}",
     creates => "${src_dir}/${real_package_name}",
     unless  => "test -x /etc/init.d/${service_name}",
+    require => File["${src_dir}"],
+    timeout => 0,
   }->
 
   file{"${src_dir}/${real_package_name}":
@@ -82,7 +86,7 @@ $nolio_repository_scheme_int            = 0,#0
   }->
 
   file{"${src_dir}/server.silent.varfile":
-    content => template("nolio_server/server.silent.varfile-v${template_version}.erb"),
+    content => template("nolio/server.silent.varfile-v${template_version}.erb"),
     replace  => "no",
   }->
 

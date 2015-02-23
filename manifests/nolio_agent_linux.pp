@@ -31,15 +31,20 @@ $template_version          = "5x",
     path => ['/sbin', '/bin', '/usr/sbin', '/usr/bin'],
   } 
 
+  if ! defined(File["${src_dir}"]) {
+    file { "${src_dir}":
+      ensure=>directory,
+    }
+  }   
 
- file {"${temp_dir}/puppet_nolio":
-    ensure => directory,
-  } ->
+
   exec { "${real_package_name}_download":
     command => "/usr/bin/wget -N '${package_source}' -O ${real_package_name}",
     cwd     => "${src_dir}",
     creates => "${src_dir}/${real_package_name}",
     unless  => "test -x /etc/init.d/${service_name}",
+    require => File["${src_dir}"],
+    timeout => 0,
   }->
 
   file{"${src_dir}/${real_package_name}":
