@@ -56,6 +56,7 @@ $nolio_db_host_name                     = "",#<DATABASE HOSTNAME OR IP>
 $nolio_repository_scheme_int            = 0,#0
 
 ) {
+
   
   $src_dir = "${temp_dir}/puppet_nolio"
   $real_package_version = regsubst($package_version, '(\.)', '_', 'G')

@@ -3,7 +3,7 @@
 # Install Nolio (CA Release Automation) Execution Agent
 #
 
-class nolio::nolio_agent_linux (
+define nolio::nolio_agent_linux (
 $agent_id                  = "${::fqdn}",
 $agent_port                = 6900,
 $install_dir               = '/opt/CA/NolioAgent',
@@ -18,9 +18,9 @@ $service_name              = 'nolioagent',
 $package_source            = "",
 $temp_dir                  = "/tmp",
 $template_version          = "5x",
-
-
 ) {
+
+
   
   $src_dir = "${temp_dir}/puppet_nolio"
   $real_package_version = regsubst($package_version, '(\.)', '_', 'G')
