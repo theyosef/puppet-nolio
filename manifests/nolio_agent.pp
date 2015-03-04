@@ -19,7 +19,7 @@ $template_version          = "5x",
   case "${::operatingsystem}" { 
    
         'CentOS': {
-      nolio::nolio_agent_linux {'asdf':
+      nolio::nolio_agent_linux {'Install_CentOS_Agent':
         agent_id                  => "${nolio::nolio_agent::agent_id}",
         agent_port                => "${nolio::nolio_agent::agent_port}",
         install_dir               => "${nolio::nolio_agent::install_dir}",
