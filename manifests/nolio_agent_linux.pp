@@ -59,7 +59,7 @@ $template_version          = "5x",
   exec { "${real_package_name}-install":
     command => "${src_dir}/${real_package_name} -q -varfile ${src_dir}/agent.silent.varfile",
     cwd     => "${src_dir}",
-    creates => "${sys_installationDir}",
+    creates => "${install_dir}",
     unless  => "test -x /etc/init.d/${service_name}",
   }
 
