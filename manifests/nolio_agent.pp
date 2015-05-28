@@ -8,21 +8,16 @@ class nolio::nolio_agent(
   $agent_mapping_application = '',
   $agent_mapping_environment = '',
   $agent_mapping_servertype  = '',
+  $package_name              = '',
   $package_version           = '5.0.2.b78',
+  $package_ensure            = installed,
   $service_name              = 'nolioagent',
-  $package_source            = "",
+  $service_ensure            = running,
+  $package_source            = '',
   $temp_dir                  = "/tmp",
   $template_version          = "5x",
 
-  $windows_package_name      = 'Release Automation Agent',
-  $windows_package_version   = '5.0.1.b764',
-  $windows_package_ensure    = installed,
-  $windows_service_name      = "nolioagent2",
-  $windows_service_ensure    = running,
 
-  $windows_temp_dir          = 'C:\media',
-  $windows_install_dir       = "C:\\Program Files (x86)\\CA",
-  $package_src_http          = "",
 ){
 
 
@@ -58,15 +53,15 @@ class nolio::nolio_agent(
         agent_mapping_servertype  => "${nolio::nolio_agent::agent_mapping_servertype}",
         template_version          => "${nolio::nolio_agent::template_version}",
 
-        package_name              => "${nolio::nolio_agent::windows_package_name}",
-        package_version           => "${nolio::nolio_agent::windows_package_version}",
-        package_ensure            => "${nolio::nolio_agent::windows_package_ensure}",
-        service_name              => "${nolio::nolio_agent::windows_service_name}",
-        service_ensure            => "${nolio::nolio_agent::windows_service_ensure}",
+        package_name              => "${nolio::nolio_agent::package_name}",
+        package_version           => "${nolio::nolio_agent::package_version}",
+        package_ensure            => "${nolio::nolio_agent::ackage_ensure}",
+        service_name              => "${nolio::nolio_agent::service_name}",
+        service_ensure            => "${nolio::nolio_agent::service_ensure}",
 
-        temp_dir                  => "${nolio::nolio_agent::windows_temp_dir}",
-        install_dir               => "${nolio::nolio_agent::windows_temp_dir}",
-        package_src_http          => "${nolio::nolio_agent::package_src_http}",
+        temp_dir                  => "${nolio::nolio_agent::temp_dir}",
+        install_dir               => "${nolio::nolio_agent::install_dir}",
+        package_source            => "${nolio::nolio_agent::package_source}",
       }
     }
 

@@ -8,12 +8,12 @@ define nolio::nolio_agent_windows (
   $package_name,
   $package_version,
   $package_ensure,
+  $package_source,
   $service_name,
   $service_ensure,
 
   $temp_dir,
   $install_dir,
-  $package_src_http,
 
   $agent_id                  = "${::fqdn}",
   $agent_port                = 6900,
@@ -47,7 +47,7 @@ define nolio::nolio_agent_windows (
   }
 
   download_file{ "nolio_agent_windows_5_0_1":
-    url  => $package_src_http,
+    url  => $package_source,
     destination_directory  => $src_dir,
   }->
 
