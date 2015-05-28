@@ -53,7 +53,7 @@ class nolio::nolio_agent(
 
         package_name              => "${nolio::nolio_agent::package_name}",
         package_version           => "${nolio::nolio_agent::package_version}",
-        package_ensure            => "${nolio::nolio_agent::ackage_ensure}",
+        package_ensure            => "${nolio::nolio_agent::package_ensure}",
         service_name              => "${nolio::nolio_agent::service_name}",
         service_ensure            => "${nolio::nolio_agent::service_ensure}",
 
