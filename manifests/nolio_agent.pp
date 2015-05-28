@@ -10,14 +10,11 @@ class nolio::nolio_agent(
   $agent_mapping_servertype  = '',
   $package_name              = '',
   $package_version           = '5.0.2.b78',
-  $package_ensure            = installed,
   $service_name              = 'nolioagent',
-  $service_ensure            = running,
   $package_source            = '',
   $temp_dir                  = "/tmp",
   $template_version          = "5x",
 ){
-
 
   case "${::operatingsystem}" {
 
@@ -53,9 +50,7 @@ class nolio::nolio_agent(
 
         package_name              => "${nolio::nolio_agent::package_name}",
         package_version           => "${nolio::nolio_agent::package_version}",
-        package_ensure            => "${nolio::nolio_agent::package_ensure}",
         service_name              => "${nolio::nolio_agent::service_name}",
-        service_ensure            => "${nolio::nolio_agent::service_ensure}",
 
         temp_dir                  => "${nolio::nolio_agent::temp_dir}",
         install_dir               => "${nolio::nolio_agent::install_dir}",
