@@ -52,7 +52,7 @@ define nolio::nolio_agent_windows (
   }->
 
   file{"${src_dir}\\agent.silent.varfile":
-    content => template("nolio_agent_windows/agent.silent.varfile-v${template_version}.erb"),
+    content => template("nolio/agent.silent.varfile-v${template_version}.erb"),
     replace  => "yes",
   }->
 
