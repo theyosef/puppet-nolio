@@ -16,8 +16,6 @@ class nolio::nolio_agent(
   $package_source            = '',
   $temp_dir                  = "/tmp",
   $template_version          = "5x",
-
-
 ){
 
 

@@ -5,15 +5,15 @@
 
 define nolio::nolio_agent_windows (
 
-  $package_name,
-  $package_version,
-  $package_ensure,
-  $package_source,
-  $service_name,
-  $service_ensure,
+  $package_name = '',
+  $package_version = '',
+  $package_ensure =installed,
+  $package_source = '',
+  $service_name = '',
+  $service_ensure= running,
 
-  $temp_dir,
-  $install_dir,
+  $temp_dir = '',
+  $install_dir = '',
 
   $agent_id                  = "${::fqdn}",
   $agent_port                = 6900,
