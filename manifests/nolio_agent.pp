@@ -22,7 +22,7 @@ class nolio::nolio_agent(
 
   $windows_temp_dir          = 'C:\media',
   $windows_install_dir       = "C:\\Program Files (x86)\\CA",
-  $package_src_http,
+  $package_src_http          = "",
 ){
 
 
