@@ -5,15 +5,13 @@
 
 define nolio::nolio_agent_windows (
 
-  $package_name,
-  $package_version,
-  $package_ensure,
-  $service_name,
-  $service_ensure,
+  $package_name = '',
+  $package_version = '',
+  $package_source = '',
+  $service_name = '',
 
-  $temp_dir,
-  $install_dir,
-  $package_src_http,
+  $temp_dir = '',
+  $install_dir = '',
 
   $agent_id                  = "${::fqdn}",
   $agent_port                = 6900,
@@ -27,6 +25,8 @@ define nolio::nolio_agent_windows (
 
 ) {
 
+  $package_ensure =installed
+  $service_ensure= running
   $src_dir = "${temp_dir}\\puppet_nolio"
   $real_package_version = regsubst($package_version, '(\.)', '_', 'G')
   $real_package_name = "nolio_agent_windows_${real_package_version}.exe"
@@ -47,7 +47,7 @@ define nolio::nolio_agent_windows (
   }
 
   download_file{ "nolio_agent_windows_5_0_1":
-    url  => $package_src_http,
+    url  => $package_source,
     destination_directory  => $src_dir,
   }->
 
