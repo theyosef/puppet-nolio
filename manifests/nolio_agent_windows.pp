@@ -59,7 +59,7 @@ define nolio::nolio_agent_windows (
   package { $package_name:
     ensure  => $package_ensure,
     source  => "${src_dir}\\${real_package_name}",
-    install_options => ['-q', "-dir ${install_dir}", '-varfile', "${src_dir}\\agent.silent.varfile", "-Vsys.installationDir=${install_dir}"],
+    install_options => ['-q', '-varfile', "${src_dir}\\agent.silent.varfile"],
     require => File["${src_dir}\\agent.silent.varfile"],
   }->
 
