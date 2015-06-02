@@ -76,7 +76,6 @@ define nolio::nolio_agent_windows (
   }
 
   exec { 'Set NolioStaging Root':
-    ensure => present,
     command => "${$setNolioStagingRoot}",
     provider => powershell,
   }
