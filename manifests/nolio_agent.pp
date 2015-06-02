@@ -14,6 +14,7 @@ class nolio::nolio_agent(
   $package_source            = '',
   $temp_dir                  = "/tmp",
   $template_version          = "5x",
+  $nolioStagingRoot_dir      = UNDEF
 ){
 
   case "${::operatingsystem}" {
@@ -55,6 +56,7 @@ class nolio::nolio_agent(
         temp_dir                  => "${nolio::nolio_agent::temp_dir}",
         install_dir               => "${nolio::nolio_agent::install_dir}",
         package_source            => "${nolio::nolio_agent::package_source}",
+        nolioStagingRoot_dir      => "${nolio::nolio_agent::nolioStagingRoot_dir}"
       }
     }
 
