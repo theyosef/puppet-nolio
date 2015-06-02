@@ -31,6 +31,7 @@ define nolio::nolio_agent_windows (
   $src_dir = "${temp_dir}\\puppet_nolio"
   $real_package_version = regsubst($package_version, '(\.)', '_', 'G')
   $real_package_name = "nolio_agent_windows_${real_package_version}.exe"
+  $setNolioStagingRoot = 'setx NolioStagingRoot D:\\ /M'
 
   Exec {
     path => "${::path}",
@@ -69,9 +70,13 @@ define nolio::nolio_agent_windows (
     require => Package[$package_name],
   }
 
+  case nolioStagingRoot_dir{
+    default : { $setNolioStagingRoot = "setx NolioStagingRoot ${nolioStagingRoot_dir} /M" }
+    UNDEF   : { $setNolioStagingRoot = $setNolioStagingRoot }
+  }->
   exec { 'Set NolioStaging Root':
     ensure => present,
-    command => "setx NolioStagingRoot D:\\ /M",
+    command => "${$setNolioStagingRoot}",
     provider => powershell,
   }
 
