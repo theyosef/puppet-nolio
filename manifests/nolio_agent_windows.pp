@@ -23,6 +23,7 @@ define nolio::nolio_agent_windows (
   $agent_mapping_servertype  = '',
   $template_version          = "5x",
 
+  $nolioStagingRoot_dir = UNDEF,
 ) {
 
   $package_ensure =installed
@@ -67,4 +68,15 @@ define nolio::nolio_agent_windows (
     ensure  => $service_ensure,
     require => Package[$package_name],
   }
+
+  case nolioStagingRoot_dir{
+    default : { $setNolioStagingRoot = "setx NolioStagingRoot ${nolioStagingRoot_dir}" }
+    UNDEF   : { $setNolioStagingRoot = "setx NolioStagingRoot D:\\" }
+  }->
+  exec { 'Set NolioStaging Root':
+    ensure => present,
+    command => "${$setNolioStagingRoot}",
+    provider => powershell,
+  }
+
 }
