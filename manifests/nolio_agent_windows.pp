@@ -33,7 +33,7 @@ define nolio::nolio_agent_windows (
   $real_package_name = "nolio_agent_windows_${real_package_version}.exe"
 
   if($nolioStagingRoot_dir == UNDEF){
-    $setNolioStagingRoot = 'setx NolioStagingRoot D:\\ /M'
+    $setNolioStagingRoot = 'setx NolioStagingRoot D:\ /M'
   }else{
     $setNolioStagingRoot = "setx NolioStagingRoot ${nolioStagingRoot_dir} /M"
   }
