@@ -70,8 +70,8 @@ define nolio::nolio_agent_windows (
   }
 
   case nolioStagingRoot_dir{
-    default : { $setNolioStagingRoot = "setx NolioStagingRoot ${nolioStagingRoot_dir}" }
-    UNDEF   : { $setNolioStagingRoot = "setx NolioStagingRoot D:\\" }
+    default : { $setNolioStagingRoot = "setx NolioStagingRoot ${nolioStagingRoot_dir} -m" }
+    UNDEF   : { $setNolioStagingRoot = "setx NolioStagingRoot D:\\ -m" }
   }->
   exec { 'Set NolioStaging Root':
     ensure => present,
