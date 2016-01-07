@@ -5,17 +5,17 @@
 
 define nolio::nolio_agent_windows (
 
-  $package_name = '',
-  $package_version = '',
-  $package_source = '',
-  $service_name = '',
+  $package_version           = '5.0.2.b78',
+  $package_name              = 'Release Automation Agent',
+  $package_source            = "",
+  $service_name              = 'nolioagent',
 
-  $temp_dir = '',
-  $install_dir = '',
+  $temp_dir                  = "C:\\media",
+  $install_dir               = '',
 
+  $execution_server_host,
   $agent_id                  = "${::fqdn}",
   $agent_port                = 6900,
-  $execution_server_host,
   $execution_server_port     = 6600,
   $execution_server_secure   = false,
   $agent_mapping_application = '',
@@ -25,8 +25,8 @@ define nolio::nolio_agent_windows (
 
 ) {
 
-  $package_ensure =installed
-  $service_ensure= running
+  $package_ensure = 'installed'
+  $service_ensure = 'running'
   $src_dir = "${temp_dir}\\puppet_nolio"
   $real_package_version = regsubst($package_version, '(\.)', '_', 'G')
   $real_package_name = "nolio_agent_windows_${real_package_version}.exe"
@@ -37,23 +37,24 @@ define nolio::nolio_agent_windows (
 
   if ! defined(File["${temp_dir}"]) {
     file { "${temp_dir}":
-      ensure => directory,
+      ensure => 'directory',
     }
   }
   if ! defined(File["${src_dir}"]){
     file { "${src_dir}":
-      ensure => directory,
+      ensure  => 'directory',
+      require =>File["${temp_dir}"],
     }
   }
 
-  download_file{ "nolio_agent_windows_5_0_1":
-    url  => $package_source,
+  download_file{ "${real_package_name}":
+    url                    => $package_source,
     destination_directory  => $src_dir,
   }->
 
   file{"${src_dir}\\agent.silent.varfile":
     content => template("nolio/agent.silent.varfile-v${template_version}.erb"),
-    replace  => "yes",
+    replace => 'yes',
   }->
 
   package { $package_name:
