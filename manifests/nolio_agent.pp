@@ -11,7 +11,7 @@ class nolio::nolio_agent(
   $package_name              = '',
   $package_version           = '5.0.2.b78',
   $service_name              = 'nolioagent',
-  $package_source            = '',
+  $package_source            = 'http://splat.changethis.yoyoyo',
   $temp_dir                  = "/tmp",
   $template_version          = "5x",
 ) {
