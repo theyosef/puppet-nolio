@@ -42,7 +42,7 @@ $nolio_db_user_name                     = "",#<RA DATABASE USERNAME>
 $nolio_install_type                     = 1, # 0==Full Install; 1==Custom Install?
 $sys_component_12750                    = false,
 $nolio_repository_remote                = false,
-$nolio_branding_name                    = CA,
+$nolio_branding_name                    = "CA",
 $nolio_db_password                      = "",#<RA DATABASE PASSWORD>
 $nolio_db_database_name                 = "",#<DATABASE SID OR NAME>
 $nolio_db_create                        = false,
