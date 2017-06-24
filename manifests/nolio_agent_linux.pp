@@ -63,6 +63,10 @@ $template_version          = "5x",
     unless  => "test -x /etc/init.d/${service_name}",
   }
 
-
+# a test/exec to force a quick re-install of the agent if we have a change in configs:
+  exec { "/sbin/service nolioagent stop && ${src_dir}/${real_package_name} -q -varfile ${src_dir}/agent.silent.varfile ; /sbin/service nolioagent restart":
+    subscribe   => File["${src_dir}/agent.silent.varfile"],
+    refreshonly => true,
+  }
 
 }
